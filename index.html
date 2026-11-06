@@ -22,28 +22,29 @@ textarea,select,input[type=number]{font:inherit;width:100%;padding:6px;border-ra
 label{display:block;margin:4px 0}.sol{display:none;background:#19c3a622;border-left:4px solid var(--m);padding:8px;margin:8px 0}.sol.show,.showall .sol{display:block}
 #gate,#tp{position:fixed;inset:0;background:var(--bg);overflow:auto;padding:16px;z-index:40}#gate{display:flex;align-items:center;justify-content:center}#tp{z-index:60}#gate[hidden],#tp[hidden]{display:none}#gate .card{max-width:380px;width:100%}
 .in{font:inherit;width:100%;padding:8px;margin:4px 0;border-radius:8px;border:1px solid var(--l);background:var(--c);color:var(--t)}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.sm{font-size:13px;opacity:.8}
-</style></head><body>
+.nx{margin:6px 0}.nx>div{border-radius:14px;padding:12px 16px;border:1.5px solid var(--m);background:#19c3a61f}.nx .need{border-color:var(--b);background:#2f6fed14}.nx ul{margin:6px 0 0 18px;padding:0}nav button:disabled{opacity:.5;cursor:not-allowed}</style></head><body>
 <header><h1>PARALLEL &amp; RATIO <small>평행선은 어떤 관계를 만들까?</small></h1>
 <div class="tb"><span id="pgt"></span><span id="sy" style="font-size:13px"></span><span id="who" style="font-size:13px"></span><div class="bar"><i id="pgb"></i></div><button onclick="fs()">전체 화면</button><button onclick="document.body.classList.toggle('showall')">정답·해설 표시/숨기기</button><button onclick="resetAll()">학습 단계 초기화</button></div><nav id="nv"></nav></header>
 <main>
 <section id="s0"><p class="sk">스켐프: 다양한 사례 관찰 → 추상화·개념 형성</p><div class="g"><div class="card"><svg id="f0" viewBox="0 0 560 380"></svg><button onclick="F0.reset()">초기화</button><button onclick="F0.tog()">길이 표시/숨기기</button><p>A, B, C, D를 드래그하세요. (DE∥BC 유지)</p></div>
-<div class="card"><h3>실시간 측정값</h3><div id="m0"></div><p>🔎 모양을 바꿔도 변하지 않는 것은 무엇인가요?</p><textarea data-k="n0" placeholder="발견한 규칙을 내 말로 적어 보세요"></textarea></div></div></section>
+<div class="card"><h3>실시간 측정값</h3><div id="m0"></div><p>🔎 모양을 바꿔도 변하지 않는 것은 무엇인가요?</p><textarea data-k="n0" placeholder="발견한 규칙을 내 말로 적어 보세요"></textarea></div></div><div class="nx" id="nx0"></div></section>
 <section id="s1" hidden><p class="sk">스켐프: 직관적 지능 · 지휘 체계(예상↔결과 비교 후 사고 수정)</p><div class="g"><div class="card"><svg id="f1" viewBox="0 0 560 380"></svg><button onclick="F1.reset()">도형 초기화</button><p>길이는 숨겨져 있어요. 도형을 움직여 보며 먼저 예상해 보세요.</p></div>
 <div class="card"><h3>DE∥BC일 때 AB:AD와 AC:AE는?</h3><label><input type="radio" name="q1" value="eq" onchange="st.p.q1=this.value;sv()"> 두 비가 같다</label><label><input type="radio" name="q1" value="gt" onchange="st.p.q1=this.value;sv()"> AB:AD가 더 크다</label><label><input type="radio" name="q1" value="lt" onchange="st.p.q1=this.value;sv()"> AC:AE가 더 크다</label>
 <h3>BC:DE는 AB:AD와?</h3><label><input type="radio" name="q2" value="eq" onchange="st.p.q2=this.value;sv()"> 같다</label><label><input type="radio" name="q2" value="gt" onchange="st.p.q2=this.value;sv()"> BC:DE가 더 크다</label><label><input type="radio" name="q2" value="lt" onchange="st.p.q2=this.value;sv()"> BC:DE가 더 작다</label>
-<button onclick="rev()">예상 확인하기</button><div id="pr"></div><textarea data-k="n1" placeholder="예상과 달랐다면 내 생각을 어떻게 고칠까요?"></textarea></div></div></section>
+<textarea data-k="r1" placeholder="왜 그렇게 예상했나요? 이유를 적어 주세요 (8자 이상)"></textarea><button onclick="rev()">예상 확인하기</button><div id="pr"></div><textarea data-k="n1" placeholder="예상과 달랐다면 내 생각을 어떻게 고칠까요?"></textarea></div></div><div class="nx" id="nx1"></div></section>
 <section id="s2" hidden><p class="sk">스켐프: 스키마 형성 · 반영적 지능(조건의 역할 검토)</p><div class="g"><div class="card"><svg id="f2" viewBox="0 0 560 380"></svg><button id="pb" onclick="tp()">평행 조건 ON</button><button onclick="F2.reset();$('pb').textContent='평행 조건 ON'">초기화</button><button onclick="F2.tog()">길이 표시/숨기기</button><button onclick="rc()">이 상태 기록</button><p>OFF에서는 E를 직접 드래그할 수 있어요.</p></div>
-<div class="card"><h3>현재 상태</h3><div id="m2"></div><h3>기록 비교</h3><div id="rc"></div><p>① ON/OFF에서 세 비는 어떻게 달라지나요?<br>② OFF인데 비가 우연히 같아 보이는 위치가 있나요? 그 위치는 어디일까요?<br>③ 평행 조건은 왜 필요할까요?</p><textarea data-k="n2"></textarea></div></div></section>
+<div class="card"><h3>현재 상태</h3><div id="m2"></div><h3>기록 비교</h3><div id="rc"></div><p>① ON/OFF에서 세 비는 어떻게 달라지나요?<br>② OFF인데 비가 우연히 같아 보이는 위치가 있나요? 그 위치는 어디일까요?<br>③ 평행 조건은 왜 필요할까요?</p><textarea data-k="n2"></textarea></div></div><div class="nx" id="nx2"></div></section>
 <section id="s3" hidden><p class="sk">스켐프: 반영적 지능 · 관계적 이해(왜 그런가?)</p><div class="g"><div class="card"><svg id="f3" viewBox="0 0 560 380"></svg><button onclick="pst(-1)">◀ 이전</button><button onclick="pst(1)">다음 ▶</button><div id="stx"></div></div>
-<div class="card"><h3>빈칸 채우기</h3><div id="qz"></div><button onclick="chk()">확인</button><div class="sol"><b>해설</b> DE∥BC이면 동위각이 같아 ∠ABC=∠ADE, ∠ACB=∠AED. 두 각이 같으므로 △ABC∽△ADE(AA)이고 대응변의 비는 AB/AD=AC/AE=BC/DE입니다.</div><textarea data-k="n3" placeholder="증명을 내 말로 정리해 보세요"></textarea></div></div></section>
-<section id="s4" hidden><p class="sk">스켐프: 학습의 전이 · 관계적 이해 (수치는 새로 생성됩니다)</p><div id="cc"></div></section>
+<div class="card"><h3>빈칸 채우기</h3><div id="qz"></div><button onclick="chk()">확인</button><div class="sol"><b>해설</b> DE∥BC이면 동위각이 같아 ∠ABC=∠ADE, ∠ACB=∠AED. 두 각이 같으므로 △ABC∽△ADE(AA)이고 대응변의 비는 AB/AD=AC/AE=BC/DE입니다.</div><textarea data-k="n3" placeholder="증명을 내 말로 정리해 보세요"></textarea></div></div><div class="nx" id="nx3"></div></section>
+<section id="s4" hidden><p class="sk">스켐프: 학습의 전이 · 관계적 이해 (수치는 새로 생성됩니다)</p><div id="cc"></div><div class="nx" id="nx4"></div></section>
 </main>
 <div id="gate"><div class="card"><h2 style="color:var(--n);margin:0 0 6px">PARALLEL &amp; RATIO</h2><p>학급 코드와 이름(또는 번호)만 입력하면 시작해요. 가입·로그인은 필요 없어요.</p><input class="in" id="gc" placeholder="학급 코드 (예: 2-3)" maxlength="20"><input class="in" id="gs" placeholder="이름 또는 번호" maxlength="20"><button onclick="enter()">시작하기</button><p id="ge"></p><p class="sm">입력한 정보는 학습 기록 확인에만 쓰이며, 그 외 개인정보는 수집하지 않아요. <a href="#teacher" onclick="openT()">교사용</a></p></div></div>
 <div id="tp" hidden><div class="row"><h2 style="color:var(--n);margin:0">교사용 대시보드</h2><button onclick="closeT()">닫기</button></div>
 <div class="card"><input class="in" id="tc" placeholder="학급 코드"><input class="in" id="tw" type="password" placeholder="교사 비밀번호"><button onclick="loadT()">불러오기</button><label style="display:inline"><input type="checkbox" id="ta" checked> 10초마다 자동 갱신</label> <span id="te"></span></div><div id="td"></div></div>
+<script src="config.js"></script>
 <script>
 const $=id=>document.getElementById(id),cl=(v,a,b)=>Math.max(a,Math.min(b,v)),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sh=a=>[...a].sort(()=>Math.random()-.5);
-const CFG={url:'https://aegriglyatzvryjaidqm.supabase.co',key:'sb_publishable_o2exBUf3jgtoTSVz2A5piQ_Lp8Zpwwt'}; /* ← Supabase의 Project URL 과 anon(publishable) key 를 따옴표 안에 붙여 넣으세요 */
+const CFG=Object.assign({url:'',key:''},window.CFG||{}); /* Supabase 연결 정보는 config.js 에 입력합니다 */
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NEW=()=>({n:{},pg:{},p:{},rec:{},ch:{},stat:{},z:{}});
 let ID=null;try{ID=JSON.parse(localStorage.getItem('pr_id'))}catch(e){}
@@ -55,14 +56,15 @@ return fetch(CFG.url.replace(/\/$/,'')+'/rest/v1/rpc/'+fn,{method:'POST',headers
 const setSy=(t,c)=>{const e=$('sy');if(e){e.textContent=t;e.style.color=c}};
 let tm=0,dirty=0;
 async function push(){if(!ID||!ok_cfg())return;dirty=0;try{await rpc('save_record',{p_class:ID.c,p_student:ID.s,p_data:st});setSy('☁ 서버에 저장됨 '+new Date().toLocaleTimeString('ko-KR'),'#9ff3df')}catch(e){dirty=1;setSy('⚠ 서버 저장 실패 – 자동 재시도 중','#ffd28a')}}
-const sv=()=>{try{localStorage.setItem(LK(),JSON.stringify(st))}catch(e){}dirty=1;clearTimeout(tm);tm=setTimeout(push,1200)};
+const sv=()=>{ban();try{localStorage.setItem(LK(),JSON.stringify(st))}catch(e){}dirty=1;clearTimeout(tm);tm=setTimeout(push,1200)};
 setInterval(()=>{if(dirty)push()},15000);
 
 const names=['탐구하기','예측하기','조건 비교하기','증명하기','도전하기'];
 $('nv').innerHTML=names.map((n,i)=>`<button onclick="go(${i})"></button>`).join('');
-function upd(){const n=Object.keys(st.pg).filter(k=>st.pg[k]).length;$('pgt').textContent=`진행률 ${n}/5 (${n*20}%)`;$('pgb').style.width=n*20+'%';[...$('nv').children].forEach((b,i)=>b.textContent=names[i]+(st.pg[i]?' ✓':''));sv()}
-const prog=k=>{if(!st.pg[k]){st.pg[k]=1;upd()}};
-function go(i){document.querySelectorAll('section').forEach((s,j)=>s.hidden=j!=i);[...$('nv').children].forEach((b,j)=>b.classList.toggle('on',j==i))}
+function ui(){const n=Object.keys(st.pg).filter(k=>st.pg[k]).length;$('pgt').textContent=`진행률 ${n}/5 (${n*20}%)`;$('pgb').style.width=n*20+'%';[...$('nv').children].forEach((b,i)=>{const lk=i>0&&!st.pg[i-1];b.disabled=lk;b.title=lk?'앞 단계를 먼저 마쳐 주세요':'';b.textContent=names[i]+(st.pg[i]?' ✓':lk?' 🔒':'')})}
+function upd(){ui();sv()}
+const prog=()=>{};
+function go(i){if(i>0&&!st.pg[i-1])return;scrollTo(0,0);document.querySelectorAll('section').forEach((s,j)=>s.hidden=j!=i);[...$('nv').children].forEach((b,j)=>b.classList.toggle('on',j==i));ban()}
 function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>document.body.classList.toggle('fsm'))}
 document.onfullscreenchange=()=>document.body.classList.toggle('fsm',!!document.fullscreenElement);
 const H=['두 삼각형의 대응각을 다시 살펴보세요.','평행선에서 나타나는 각(동위각)의 관계를 떠올려 보세요.','△ABC∽△ADE이므로 대응변끼리 비를 세워 보세요. AB/AD=AC/AE=BC/DE예요.'];
@@ -77,10 +79,10 @@ s.onpointerdown=e=>{const q=xy(e);let b=null,bd=28;[['A',f.P.A],['B',f.P.B],['C'
 s.onpointermove=e=>{const k=f.g;if(!k)return;const q=xy(e);if('ABC'.includes(k)){const P={...f.P,[k]:[cl(q[0],20,540),cl(q[1],20,360)]},cr=(P.B[0]-P.A[0])*(P.C[1]-P.A[1])-(P.B[1]-P.A[1])*(P.C[0]-P.A[0]);if(Math.abs(cr)<6000)return;f.P=P}else{const[a,b]=k=='D'?[f.P.A,f.P.B]:[f.P.A,f.P.C],v=[b[0]-a[0],b[1]-a[1]],u=cl(((q[0]-a[0])*v[0]+(q[1]-a[1])*v[1])/(v[0]*v[0]+v[1]*v[1]),.1,.9);if(k=='D')f.t=u;else f.s=u}f.cnt++;draw()};
 s.onpointerup=s.onpointercancel=()=>f.g=null;
 f.draw=draw;f.tog=()=>{f.show=!f.show;draw()};f.reset=()=>{f.P={A:[...I.A],B:[...I.B],C:[...I.C]};f.t=f.s=.4;f.par=true;f.show=o.show!==false;f.cnt=0;draw()};f.reset();return f}
-const F0=Fig('f0',{cb:f=>{$('m0').innerHTML=T(f.m);if(f.cnt>=8)prog(0)}});
+const F0=Fig('f0',{cb:f=>{$('m0').innerHTML=T(f.m);if(f.cnt>=8&&!st.f0){st.f0=1;sv()}else if(f.cnt>0&&f.cnt<=8)ban()}});
 const F1=Fig('f1',{show:false});
-function rev(){const p=st.p;if(!p.q1||!p.q2){$('pr').innerHTML='<p>두 질문 모두 선택해 주세요.</p>';return}const m=F1.m,c=(a,b)=>Math.abs(a-b)<.001?'eq':a>b?'gt':'lt',a1=c(m.r1,m.r2),a2=c(m.r3,m.r1),w={eq:'같아요',gt:'앞의 것이 더 커요',lt:'뒤의 것이 더 커요'};st.p.res=[p.q1==a1,p.q2==a2];F1.show=true;F1.draw();
-$('pr').innerHTML=T(m)+`<p>${p.q1==a1?'✅':'❌'} 질문 1: AB:AD와 AC:AE는 ${w[a1]}.</p><p>${p.q2==a2?'✅':'❌'} 질문 2: BC:DE와 AB:AD는 ${w[a2]}.</p><p>도형을 움직여 다시 확인한 뒤, 예상이 달랐다면 아래에 생각을 고쳐 적어 보세요.</p>`;prog(1)}
+function rev(){const p=st.p;if(!p.q1||!p.q2){$('pr').innerHTML='<p>두 질문 모두 선택해 주세요.</p>';return}if((st.n.r1||'').trim().length<8){$('pr').innerHTML='<p>먼저 왜 그렇게 예상했는지 이유를 적어 주세요 (8자 이상).</p>';return}const m=F1.m,c=(a,b)=>Math.abs(a-b)<.001?'eq':a>b?'gt':'lt',a1=c(m.r1,m.r2),a2=c(m.r3,m.r1),w={eq:'같아요',gt:'앞의 것이 더 커요',lt:'뒤의 것이 더 커요'};st.p.res=[p.q1==a1,p.q2==a2];F1.show=true;F1.draw();
+$('pr').innerHTML=T(m)+`<p>${p.q1==a1?'✅':'❌'} 질문 1: AB:AD와 AC:AE는 ${w[a1]}.</p><p>${p.q2==a2?'✅':'❌'} 질문 2: BC:DE와 AB:AD는 ${w[a2]}.</p><p>도형을 움직여 다시 확인한 뒤, 예상이 달랐다면 아래에 생각을 고쳐 적어 보세요.</p>`;sv()}
 const F2=Fig('f2',{cb:f=>{$('m2').innerHTML=T(f.m)+msg(f)}});
 function tp(){F2.par=!F2.par;F2.s=F2.t;F2.draw();$('pb').textContent='평행 조건 '+(F2.par?'ON':'OFF')}
 function rr(){const r=st.rec;$('rc').innerHTML=r.on||r.off?'<table><tr><th>상태</th><th>AB/AD</th><th>AC/AE</th><th>BC/DE</th></tr>'+['on','off'].filter(k=>r[k]).map(k=>`<tr><td>평행 ${k.toUpperCase()}</td><td>${r[k].r1.toFixed(3)}</td><td>${r[k].r2.toFixed(3)}</td><td>${r[k].r3.toFixed(3)}</td></tr>`).join('')+'</table>':'';if(r.on&&r.off)prog(2)}
@@ -91,7 +93,7 @@ const F3=Fig('f3',{show:false,layer:f=>{const{A,B,C}=f.P,D=f.D,E=f.E;let h='';if
 if(ps==0)h+=`<line x1="${B[0]}" y1="${B[1]}" x2="${C[0]}" y2="${C[1]}" stroke="#19c3a6" stroke-width="7" opacity=".5"/>`;
 if(ps>=1)h+=arc(B,A,C,28,'#f59e0b',1)+arc(D,A,E,28,'#f59e0b',1);if(ps>=2)h+=arc(C,A,B,28,'#ec4899',2)+arc(E,A,D,28,'#ec4899',2);if(ps>=3)h+=arc(A,B,C,34,'#8b5cf6',3);return h}});
 const SX=['<b>가정</b> DE∥BC (민트색). 평행한 두 직선이 AB, AC로 잘리면 <b>동위각</b>이 생겨요.','<b>∠ABC = ∠ADE</b> (주황 호) — DE∥BC이므로 동위각의 크기가 같아요.','<b>∠ACB = ∠AED</b> (분홍 호) — 이것도 동위각이에요.','<b>∠A는 공통</b> (보라 호). 두 쌍의 대응각이 같으므로 <b>△ABC∽△ADE</b> (AA 닮음).','닮은 도형의 대응변의 비는 같으므로 <b>AB/AD = AC/AE = BC/DE</b> 가 성립해요.'];
-function pst(d){ps=cl(ps+d,0,4);F3.draw();$('stx').innerHTML=`<p>단계 ${ps+1}/5</p><p>${SX[ps]}</p>`}
+function pst(d){ps=cl(ps+d,0,4);if(ps==4&&!st.f3){st.f3=1;sv()}F3.draw();$('stx').innerHTML=`<p>단계 ${ps+1}/5</p><p>${SX[ps]}</p>`}
 const Z=[['∠ABC와 ∠ADE는 DE∥BC이므로?',['동위각이므로 크기가 같다','동위각이므로 합이 180°이다','관계를 알 수 없다'],0,1],['두 삼각형 △ABC와 △ADE는 어떤 관계인가?',['합동','닮음 (AA)','넓이가 같다'],1,0],['따라서 대응변의 비는?',['AB/AD = AC/AE = BC/DE','AB/AD = DE/BC','AB/AD = AE/AC'],0,2]];
 $('qz').innerHTML=Z.map((z,i)=>`<p>${i+1}. ${z[0]}<br><select id="z${i}"><option value="-1">선택…</option>${z[1].map((o,k)=>`<option value="${k}">${o}</option>`).join('')}</select> <span id="zf${i}"></span></p>`).join('');
 function chk(){let n=0;Z.forEach((z,i)=>{const v=+$('z'+i).value;$('zf'+i).textContent=v<0?'':v==z[2]?'✅ 정답':'💡 '+H[z[3]];if(v==z[2])n++});st.z={a:Z.map((_,i)=>+$('z'+i).value),n};sv();if(n==3){prog(3);document.querySelector('#s3 .sol').classList.add('show')}}
@@ -115,11 +117,20 @@ if(p.txt){const v=$('in'+i).value,miss=KW.filter(w=>!v.includes(w));ok=v.length>
 else if(p.num){const v=parseFloat($('in'+i).value);if(isNaN(v)){fb.textContent='숫자를 입력해 주세요.';return}ok=Math.abs(v-p.ok)<1e-9}else ok=p.opts[k]==p.ok;
 const av=(p.txt||p.num)?$('in'+i).value:p.opts[k],LG=st.ch[i]=st.ch[i]||[];let e=LG.find(x=>x.id==p.id);if(!e){e={id:p.id,q:p.q.replace(/<[^>]+>/g,''),r:String(p.ok),a:[],s:0};LG.push(e);if(LG.length>8)LG.shift()}e.a.push(String(av).slice(0,1500));if(ok)e.s=1;const SS=st.stat[i]=st.stat[i]||{a:0,c:0};SS.a++;if(ok)SS.c++;
 if(ok){fb.textContent='✅ 정답입니다!';$('sol'+i).classList.add('show');if(!p.d){p.d=1;if(P.filter(x=>x.d).length>=3)prog(4)}}
-else{p.w++;fb.textContent='💡 힌트 '+Math.min(p.w,3)+': '+H[Math.min(p.w,3)-1]+' '+ms;if(p.w>=3)$('sol'+i).classList.add('show')}}
+else{p.w++;fb.textContent='💡 힌트 '+Math.min(p.w,3)+': '+H[Math.min(p.w,3)-1]+' '+ms;if(p.w>=3)$('sol'+i).classList.add('show')}sv()}
 function resetAll(){st=NEW();sv();document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);[F0,F1,F2,F3].forEach(f=>f.reset());$('pr').innerHTML='';$('pb').textContent='평행 조건 ON';rr();ps=0;pst(0);Z.forEach((_,i)=>{$('z'+i).value=-1;$('zf'+i).textContent=''});document.querySelector('#s3 .sol').classList.remove('show');for(let i=0;i<5;i++)gen(i);upd()}
 document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=st.n[t.dataset.k]||'';t.oninput=()=>{st.n[t.dataset.k]=t.value;sv()}});
 ['q1','q2'].forEach(n=>{const r=document.querySelector(`input[name=${n}][value="${st.p[n]}"]`);if(r)r.checked=true});
-for(let i=0;i<5;i++)gen(i);rr();pst(0);upd();go(0);
+for(let i=0;i<5;i++)gen(i);rr();pst(0);upd();go((()=>{for(let i=0;i<5;i++)if(!st.pg[i])return i;return 4})());
+function ban(){let c=0;try{c=F0.cnt}catch(e){}
+const L=(s,m)=>(s||'').trim().length>=m,r=st.rec||{},p=st.p||{},nn=st.n||{},z=st.z||{},sol=[0,1,2,3,4].filter(k=>((st.ch||{})[k]||[]).some(e=>e.s)).length;
+const need=[
+[...(st.f0?[]:[`도형의 꼭짓점과 점 D를 직접 움직여 보세요 (${Math.min(c,8)}/8)`]),...(L(nn.n0,10)?[]:['발견한 규칙을 메모에 10자 이상 적어 보세요'])],
+[...(p.q1&&p.q2?[]:['두 질문에 예상을 골라 보세요']),...(L(nn.r1,8)?[]:['왜 그렇게 예상했는지 이유를 적어 보세요 (8자 이상)']),...(p.res?[]:["'예상 확인하기'를 눌러 결과와 비교해 보세요"])],
+[...(r.on?[]:["평행 ON 상태에서 '이 상태 기록'을 눌러 보세요"]),...(r.off?[]:["평행 OFF로 바꾸고 '이 상태 기록'을 눌러 보세요"]),...(L(nn.n2,10)?[]:['ON과 OFF의 차이를 생각에 10자 이상 적어 보세요'])],
+[...(st.f3?[]:['증명 5단계를 끝까지 따라가 보세요']),...(z.n==3?[]:['빈칸 채우기를 모두 맞혀 보세요'])],
+sol>=3?[]:[`도전 문제를 3가지 유형 이상 풀어 보세요 (${sol}/3)`]];
+need.forEach((u,k)=>{if(!u.length&&!st.pg[k])st.pg[k]=1;const e=$('nx'+k);if(e)e.innerHTML=st.pg[k]?(k<4?`<div><b>🎉 잘했어요! 이번 활동을 성공적으로 마쳤어요. 다음 단계로 넘어가 볼까요?</b><br><button onclick="go(${k+1})">다음 단계로 이동 ▶</button></div>`:'<div><b>🏆 모든 단계를 마쳤어요! 끝까지 해낸 여러분이 정말 멋져요.</b></div>'):`<div class="need"><b>💪 조금만 더 탐구해 볼까요?</b><ul>${u.map(x=>`<li>${x}</li>`).join('')}</ul></div>`});ui()}
 function enter(){const c=$('gc').value.trim(),s=$('gs').value.trim();if(!c||!s){$('ge').textContent='학급 코드와 이름(번호)을 모두 입력해 주세요.';return}try{localStorage.setItem('pr_id',JSON.stringify({c,s}))}catch(e){}location.reload()}
 $('gate').hidden=!!ID;$('who').innerHTML=ID?` ${esc(ID.c)} · ${esc(ID.s)} <button onclick="localStorage.removeItem('pr_id');location.reload()">학생 변경</button> <a href="#teacher" onclick="openT()" style="color:#9ff3df">교사용</a>`:'';
 if(!ok_cfg())setSy('⚠ 서버 미설정 – 이 기기에만 저장됨','#ffd28a');else if(ID)setSy('☁ 서버 연결 중…','#fff');
@@ -134,8 +145,8 @@ let h=`<p>학생 ${TR.length}명 <button onclick="csv()">CSV 내려받기</butto
 TR.forEach((r,i)=>{const d=r.data||{},[a,c]=sum(d);h+=`<tr style="cursor:pointer" onclick="detT(${i})"><td>${esc(r.student)}</td><td>${cnt(d)}/5</td>${[0,1,2,3,4].map(k=>`<td>${(d.pg||{})[k]?'✅':'—'}</td>`).join('')}<td>${c}/${a}</td><td>${new Date(r.updated_at).toLocaleString('ko-KR')}</td></tr>`});
 h+='</table></div><p class="sm">학생 줄을 누르면 상세 기록이 아래에 나타나요.</p><h3>문제 유형별 정답률</h3><table><tr><th>유형</th><th>시도</th><th>정답</th><th>정답률</th><th>해결 학생</th></tr>'+ti.map((t,k)=>{let a=0,c=0,s=0;TR.forEach(r=>{const d=r.data||{},x=(d.stat||{})[k];if(x){a+=x.a;c+=x.c}if(((d.ch||{})[k]||[]).some(e=>e.s))s++});return`<tr><td>${t}</td><td>${a}</td><td>${c}</td><td>${a?Math.round(c/a*100)+'%':'-'}</td><td>${s}명</td></tr>`}).join('')+'</table><div id="dt"></div>';$('td').innerHTML=h}
 function detT(i){const r=TR[i],d=r.data||{},n=d.n||{},p=d.p||{},ch=d.ch||{},rec=d.rec||{},z=d.z||{},yn=v=>v==null?'':v?'✅':'❌',L={eq:'같다',gt:'앞의 것이 크다',lt:'뒤의 것이 크다'},res=p.res||[];
-$('dt').innerHTML=`<div class="card"><h3>${esc(r.student)} 상세 기록</h3><p><b>탐구 메모</b>: ${esc(n.n0)||'-'}</p><p><b>예측</b>: 질문1 ${esc(L[p.q1])||'-'} ${yn(res[0])} / 질문2 ${esc(L[p.q2])||'-'} ${yn(res[1])}<br>수정 메모: ${esc(n.n1)||'-'}</p><p><b>조건 비교</b> (AB/AD, AC/AE, BC/DE) ON: ${rt(rec.on)} · OFF: ${rt(rec.off)}<br>생각: ${esc(n.n2)||'-'}</p><p><b>증명 퀴즈</b>: 정답 ${z.n??'-'}/3 · 정리: ${esc(n.n3)||'-'}</p><h4>도전하기</h4>`+[0,1,2,3,4].map(k=>(ch[k]||[]).map(e=>`<p>${ti[k]} — ${esc(e.q)}<br>학생 답: ${e.a.map(esc).join(' → ')} · 정답: ${esc(e.r)} · ${e.s?'✅ 해결':'❌ 미해결'} (시도 ${e.a.length}회)</p>`).join('')).join('')+`<p><b>서술 설명(최종 입력)</b>: ${esc(n.c4)||'-'}</p></div>`}
-function csv(){const q=v=>{let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return'"'+s.replace(/"/g,'""')+'"'},rows=[['학생','진행(5)',...names,'예측1','예측2','증명퀴즈','도전 시도','도전 정답','탐구메모','예측메모','조건비교생각','증명정리','서술설명','마지막활동']];
-TR.forEach(r=>{const d=r.data||{},n=d.n||{},pg=d.pg||{},res=(d.p||{}).res||[];let a=0,c=0;Object.values(d.stat||{}).forEach(x=>{a+=x.a;c+=x.c});rows.push([r.student,Object.values(pg).filter(Boolean).length,...[0,1,2,3,4].map(k=>pg[k]?'완료':''),...[0,1].map(k=>res[k]==null?'':res[k]?'정답':'오답'),(d.z||{}).n??'',a,c,n.n0,n.n1,n.n2,n.n3,n.c4,r.updated_at])});
+$('dt').innerHTML=`<div class="card"><h3>${esc(r.student)} 상세 기록</h3><p><b>탐구 메모</b>: ${esc(n.n0)||'-'}</p><p><b>예측</b>: 질문1 ${esc(L[p.q1])||'-'} ${yn(res[0])} / 질문2 ${esc(L[p.q2])||'-'} ${yn(res[1])}<br>이유: ${esc(n.r1)||'-'}<br>수정 메모: ${esc(n.n1)||'-'}</p><p><b>조건 비교</b> (AB/AD, AC/AE, BC/DE) ON: ${rt(rec.on)} · OFF: ${rt(rec.off)}<br>생각: ${esc(n.n2)||'-'}</p><p><b>증명 퀴즈</b>: 정답 ${z.n??'-'}/3 · 정리: ${esc(n.n3)||'-'}</p><h4>도전하기</h4>`+[0,1,2,3,4].map(k=>(ch[k]||[]).map(e=>`<p>${ti[k]} — ${esc(e.q)}<br>학생 답: ${e.a.map(esc).join(' → ')} · 정답: ${esc(e.r)} · ${e.s?'✅ 해결':'❌ 미해결'} (시도 ${e.a.length}회)</p>`).join('')).join('')+`<p><b>서술 설명(최종 입력)</b>: ${esc(n.c4)||'-'}</p></div>`}
+function csv(){const q=v=>{let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return'"'+s.replace(/"/g,'""')+'"'},rows=[['학생','진행(5)',...names,'예측1','예측2','증명퀴즈','도전 시도','도전 정답','탐구메모','예측이유','예측메모','조건비교생각','증명정리','서술설명','마지막활동']];
+TR.forEach(r=>{const d=r.data||{},n=d.n||{},pg=d.pg||{},res=(d.p||{}).res||[];let a=0,c=0;Object.values(d.stat||{}).forEach(x=>{a+=x.a;c+=x.c});rows.push([r.student,Object.values(pg).filter(Boolean).length,...[0,1,2,3,4].map(k=>pg[k]?'완료':''),...[0,1].map(k=>res[k]==null?'':res[k]?'정답':'오답'),(d.z||{}).n??'',a,c,n.n0,n.r1,n.n1,n.n2,n.n3,n.c4,r.updated_at])});
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+rows.map(r=>r.map(q).join(',')).join('\n')],{type:'text/csv'}));a.download='학습기록_'+$('tc').value+'.csv';a.click()}
 </script></body></html>
