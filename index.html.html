@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>평행선은 어떤 관계를 만들까?</title>
+<style>
+:root{--n:#12307a;--b:#2f6fed;--m:#19c3a6;--bg:#f4f8ff;--c:#fff;--t:#1b2540;--l:#d5e0f5;--hd:#12307a;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--n:#9db8ff;--bg:#0d1530;--c:#16214a;--t:#e8eeff;--l:#2c3b6e;--hd:#0a1230}}
+:root[data-theme=dark]{--n:#9db8ff;--bg:#0d1530;--c:#16214a;--t:#e8eeff;--l:#2c3b6e;--hd:#0a1230}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--t)}
+body.fsm{font-size:19px}
+header{background:var(--hd);color:#fff;padding:10px 16px}h1{margin:0;font-size:20px}h1 small{font-weight:400;opacity:.85;margin-left:8px;font-size:15px}
+.tb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}.bar{flex:1;min-width:120px;height:10px;background:#ffffff33;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--m);transition:.3s}
+nav{display:flex;gap:6px;flex-wrap:wrap}nav button{flex:1;min-width:110px;background:#ffffff1f;color:#fff;border:0}nav button.on{background:var(--m);color:#06362d;font-weight:700}
+main{max-width:1100px;margin:14px auto;padding:0 12px}
+.g{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}@media(max-width:860px){.g{grid-template-columns:1fr}}
+.card{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px;margin-bottom:14px}h3{margin:0 0 6px;color:var(--n)}
+.sk{font-size:13px;color:var(--b);background:#2f6fed14;padding:4px 8px;border-radius:8px}
+button{font:inherit;background:var(--b);color:#fff;border:0;border-radius:9px;padding:7px 12px;cursor:pointer;margin:3px 3px 3px 0}button:hover{filter:brightness(1.1)}button.op{background:var(--c);color:var(--t);border:1.5px solid var(--b)}
+svg{width:100%;height:auto;touch-action:none;display:block}.sf{max-width:330px}
+.tri{fill:#2f6fed14;stroke:var(--n);stroke-width:3}.de{stroke:#19c3a6;stroke-width:4}.pt{fill:var(--b);stroke:#fff;stroke-width:2;cursor:grab}
+.ln{font:600 12.5px sans-serif;fill:var(--n);text-anchor:middle;paint-order:stroke;stroke:var(--c);stroke-width:4px}.vl{font:700 17px sans-serif;fill:var(--n);text-anchor:middle}
+table{width:100%;border-collapse:collapse;margin:6px 0;text-align:center}th,td{border:1px solid var(--l);padding:4px}th{background:var(--bg);color:var(--n)}
+textarea,select,input[type=number]{font:inherit;width:100%;padding:6px;border-radius:8px;border:1px solid var(--l);background:var(--c);color:var(--t)}textarea{min-height:70px}select,input[type=number]{width:auto}
+label{display:block;margin:4px 0}.sol{display:none;background:#19c3a622;border-left:4px solid var(--m);padding:8px;margin:8px 0}.sol.show,.showall .sol{display:block}
+</style></head><body>
+<header><h1>PARALLEL &amp; RATIO <small>평행선은 어떤 관계를 만들까?</small></h1>
+<div class="tb"><span id="pgt"></span><div class="bar"><i id="pgb"></i></div><button onclick="fs()">전체 화면</button><button onclick="document.body.classList.toggle('showall')">정답·해설 표시/숨기기</button><button onclick="resetAll()">학습 단계 초기화</button></div><nav id="nv"></nav></header>
+<main>
+<section id="s0"><p class="sk">스켐프: 다양한 사례 관찰 → 추상화·개념 형성</p><div class="g"><div class="card"><svg id="f0" viewBox="0 0 560 380"></svg><button onclick="F0.reset()">초기화</button><button onclick="F0.tog()">길이 표시/숨기기</button><p>A, B, C, D를 드래그하세요. (DE∥BC 유지)</p></div>
+<div class="card"><h3>실시간 측정값</h3><div id="m0"></div><p>🔎 모양을 바꿔도 변하지 않는 것은 무엇인가요?</p><textarea data-k="n0" placeholder="발견한 규칙을 내 말로 적어 보세요"></textarea></div></div></section>
+<section id="s1" hidden><p class="sk">스켐프: 직관적 지능 · 지휘 체계(예상↔결과 비교 후 사고 수정)</p><div class="g"><div class="card"><svg id="f1" viewBox="0 0 560 380"></svg><button onclick="F1.reset()">도형 초기화</button><p>길이는 숨겨져 있어요. 도형을 움직여 보며 먼저 예상해 보세요.</p></div>
+<div class="card"><h3>DE∥BC일 때 AB:AD와 AC:AE는?</h3><label><input type="radio" name="q1" value="eq" onchange="st.p.q1=this.value;sv()"> 두 비가 같다</label><label><input type="radio" name="q1" value="gt" onchange="st.p.q1=this.value;sv()"> AB:AD가 더 크다</label><label><input type="radio" name="q1" value="lt" onchange="st.p.q1=this.value;sv()"> AC:AE가 더 크다</label>
+<h3>BC:DE는 AB:AD와?</h3><label><input type="radio" name="q2" value="eq" onchange="st.p.q2=this.value;sv()"> 같다</label><label><input type="radio" name="q2" value="gt" onchange="st.p.q2=this.value;sv()"> BC:DE가 더 크다</label><label><input type="radio" name="q2" value="lt" onchange="st.p.q2=this.value;sv()"> BC:DE가 더 작다</label>
+<button onclick="rev()">예상 확인하기</button><div id="pr"></div><textarea data-k="n1" placeholder="예상과 달랐다면 내 생각을 어떻게 고칠까요?"></textarea></div></div></section>
+<section id="s2" hidden><p class="sk">스켐프: 스키마 형성 · 반영적 지능(조건의 역할 검토)</p><div class="g"><div class="card"><svg id="f2" viewBox="0 0 560 380"></svg><button id="pb" onclick="tp()">평행 조건 ON</button><button onclick="F2.reset();$('pb').textContent='평행 조건 ON'">초기화</button><button onclick="F2.tog()">길이 표시/숨기기</button><button onclick="rc()">이 상태 기록</button><p>OFF에서는 E를 직접 드래그할 수 있어요.</p></div>
+<div class="card"><h3>현재 상태</h3><div id="m2"></div><h3>기록 비교</h3><div id="rc"></div><p>① ON/OFF에서 세 비는 어떻게 달라지나요?<br>② OFF인데 비가 우연히 같아 보이는 위치가 있나요? 그 위치는 어디일까요?<br>③ 평행 조건은 왜 필요할까요?</p><textarea data-k="n2"></textarea></div></div></section>
+<section id="s3" hidden><p class="sk">스켐프: 반영적 지능 · 관계적 이해(왜 그런가?)</p><div class="g"><div class="card"><svg id="f3" viewBox="0 0 560 380"></svg><button onclick="pst(-1)">◀ 이전</button><button onclick="pst(1)">다음 ▶</button><div id="stx"></div></div>
+<div class="card"><h3>빈칸 채우기</h3><div id="qz"></div><button onclick="chk()">확인</button><div class="sol"><b>해설</b> DE∥BC이면 동위각이 같아 ∠ABC=∠ADE, ∠ACB=∠AED. 두 각이 같으므로 △ABC∽△ADE(AA)이고 대응변의 비는 AB/AD=AC/AE=BC/DE입니다.</div><textarea data-k="n3" placeholder="증명을 내 말로 정리해 보세요"></textarea></div></div></section>
+<section id="s4" hidden><p class="sk">스켐프: 학습의 전이 · 관계적 이해 (수치는 새로 생성됩니다)</p><div id="cc"></div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),cl=(v,a,b)=>Math.max(a,Math.min(b,v)),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sh=a=>[...a].sort(()=>Math.random()-.5);
+let st={n:{},pg:{},p:{},rec:{}};try{Object.assign(st,JSON.parse(localStorage.getItem('pr')||'{}'))}catch(e){}
+const sv=()=>{try{localStorage.setItem('pr',JSON.stringify(st))}catch(e){}};
+const names=['탐구하기','예측하기','조건 비교하기','증명하기','도전하기'];
+$('nv').innerHTML=names.map((n,i)=>`<button onclick="go(${i})"></button>`).join('');
+function upd(){const n=Object.keys(st.pg).filter(k=>st.pg[k]).length;$('pgt').textContent=`진행률 ${n}/5 (${n*20}%)`;$('pgb').style.width=n*20+'%';[...$('nv').children].forEach((b,i)=>b.textContent=names[i]+(st.pg[i]?' ✓':''));sv()}
+const prog=k=>{if(!st.pg[k]){st.pg[k]=1;upd()}};
+function go(i){document.querySelectorAll('section').forEach((s,j)=>s.hidden=j!=i);[...$('nv').children].forEach((b,j)=>b.classList.toggle('on',j==i))}
+function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>document.body.classList.toggle('fsm'))}
+document.onfullscreenchange=()=>document.body.classList.toggle('fsm',!!document.fullscreenElement);
+const H=['두 삼각형의 대응각을 다시 살펴보세요.','평행선에서 나타나는 각(동위각)의 관계를 떠올려 보세요.','△ABC∽△ADE이므로 대응변끼리 비를 세워 보세요. AB/AD=AC/AE=BC/DE예요.'];
+const T=m=>`<table><tr>${['AB','AD','AC','AE','BC','DE'].map(k=>`<th>${k}</th>`).join('')}</tr><tr>${['AB','AD','AC','AE','BC','DE'].map(k=>`<td>${m[k].toFixed(2)}</td>`).join('')}</tr></table><table><tr><th>AB/AD</th><th>AC/AE</th><th>BC/DE</th></tr><tr><td>${m.r1.toFixed(3)}</td><td>${m.r2.toFixed(3)}</td><td>${m.r3.toFixed(3)}</td></tr></table>`;
+const msg=f=>{const m=f.m,e=(a,b)=>Math.abs(a-b)<.005;if(f.par)return'<p>✅ 평행 조건 ON: 세 비가 모두 같아요.</p>';if(e(m.r1,m.r2))return'<p>E가 DE∥BC가 되는 위치에 와서 세 비가 다시 같아졌어요.</p>';if(e(m.r1,m.r3)||e(m.r2,m.r3))return'<p>⚠️ 두 비가 우연히 같지만 나머지 비와는 달라요. E를 조금만 움직여도 깨져요.</p>';return'<p>❌ 평행 조건 OFF: 세 비가 서로 달라졌어요. 비례 관계가 일반적으로 보장되지 않아요.</p>'};
+function Fig(id,o={}){const s=$(id),f={o,cnt:0},I={A:[280,40],B:[90,320],C:[490,320]},pt=(P,Q,k)=>[P[0]+(Q[0]-P[0])*k,P[1]+(Q[1]-P[1])*k],d=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1])/40;
+function draw(){const{A,B,C}=f.P,D=pt(A,B,f.t),E=pt(A,C,f.par?f.t:f.s),m={AB:d(A,B),AD:d(A,D),AC:d(A,C),AE:d(A,E),BC:d(B,C),DE:d(D,E)};m.r1=m.AB/m.AD;m.r2=m.AC/m.AE;m.r3=m.BC/m.DE;f.D=D;f.E=E;f.m=m;
+const L=(k,p,q,x,y)=>f.show?`<text class="ln" x="${(p[0]+q[0])/2+x}" y="${(p[1]+q[1])/2+y}">${k}=${m[k].toFixed(1)}</text>`:'',V=(t,p,x,y)=>`<text class="vl" x="${p[0]+x}" y="${p[1]+y}">${t}</text>`;
+s.innerHTML=(o.layer?o.layer(f):'')+`<polygon class="tri" points="${A} ${B} ${C}"/><line class="de" x1="${D[0]}" y1="${D[1]}" x2="${E[0]}" y2="${E[1]}"/>`+L('AB',D,B,-30,0)+L('AD',A,D,-30,0)+L('AC',E,C,30,0)+L('AE',A,E,30,0)+L('BC',B,C,0,26)+L('DE',D,E,0,-10)+[['A',A,0,-14],['B',B,-14,20],['C',C,14,20],['D',D,-16,0],['E',E,16,0]].map(([t,p,x,y])=>V(t,p,x,y)).join('')+[['A',A],['B',B],['C',C],['D',D],['E',E]].map(([t,p])=>`<circle class="pt" cx="${p[0]}" cy="${p[1]}" r="${t=='E'&&f.par?5:9}" ${t=='E'&&f.par?'style="opacity:.5"':''}/>`).join('');o.cb&&o.cb(f)}
+const xy=e=>{const r=s.getBoundingClientRect();return[(e.clientX-r.left)*560/r.width,(e.clientY-r.top)*380/r.height]};
+s.onpointerdown=e=>{const q=xy(e);let b=null,bd=28;[['A',f.P.A],['B',f.P.B],['C',f.P.C],['D',f.D],['E',f.E]].forEach(([k,p])=>{if(k=='E'&&f.par)return;const z=Math.hypot(p[0]-q[0],p[1]-q[1]);if(z<bd){bd=z;b=k}});f.g=b;if(b)s.setPointerCapture(e.pointerId)};
+s.onpointermove=e=>{const k=f.g;if(!k)return;const q=xy(e);if('ABC'.includes(k)){const P={...f.P,[k]:[cl(q[0],20,540),cl(q[1],20,360)]},cr=(P.B[0]-P.A[0])*(P.C[1]-P.A[1])-(P.B[1]-P.A[1])*(P.C[0]-P.A[0]);if(Math.abs(cr)<6000)return;f.P=P}else{const[a,b]=k=='D'?[f.P.A,f.P.B]:[f.P.A,f.P.C],v=[b[0]-a[0],b[1]-a[1]],u=cl(((q[0]-a[0])*v[0]+(q[1]-a[1])*v[1])/(v[0]*v[0]+v[1]*v[1]),.1,.9);if(k=='D')f.t=u;else f.s=u}f.cnt++;draw()};
+s.onpointerup=s.onpointercancel=()=>f.g=null;
+f.draw=draw;f.tog=()=>{f.show=!f.show;draw()};f.reset=()=>{f.P={A:[...I.A],B:[...I.B],C:[...I.C]};f.t=f.s=.4;f.par=true;f.show=o.show!==false;f.cnt=0;draw()};f.reset();return f}
+const F0=Fig('f0',{cb:f=>{$('m0').innerHTML=T(f.m);if(f.cnt>=8)prog(0)}});
+const F1=Fig('f1',{show:false});
+function rev(){const p=st.p;if(!p.q1||!p.q2){$('pr').innerHTML='<p>두 질문 모두 선택해 주세요.</p>';return}const m=F1.m,c=(a,b)=>Math.abs(a-b)<.001?'eq':a>b?'gt':'lt',a1=c(m.r1,m.r2),a2=c(m.r3,m.r1),w={eq:'같아요',gt:'앞의 것이 더 커요',lt:'뒤의 것이 더 커요'};F1.show=true;F1.draw();
+$('pr').innerHTML=T(m)+`<p>${p.q1==a1?'✅':'❌'} 질문 1: AB:AD와 AC:AE는 ${w[a1]}.</p><p>${p.q2==a2?'✅':'❌'} 질문 2: BC:DE와 AB:AD는 ${w[a2]}.</p><p>도형을 움직여 다시 확인한 뒤, 예상이 달랐다면 아래에 생각을 고쳐 적어 보세요.</p>`;prog(1)}
+const F2=Fig('f2',{cb:f=>{$('m2').innerHTML=T(f.m)+msg(f)}});
+function tp(){F2.par=!F2.par;F2.s=F2.t;F2.draw();$('pb').textContent='평행 조건 '+(F2.par?'ON':'OFF')}
+function rr(){const r=st.rec;$('rc').innerHTML=r.on||r.off?'<table><tr><th>상태</th><th>AB/AD</th><th>AC/AE</th><th>BC/DE</th></tr>'+['on','off'].filter(k=>r[k]).map(k=>`<tr><td>평행 ${k.toUpperCase()}</td><td>${r[k].r1.toFixed(3)}</td><td>${r[k].r2.toFixed(3)}</td><td>${r[k].r3.toFixed(3)}</td></tr>`).join('')+'</table>':'';if(r.on&&r.off)prog(2)}
+function rc(){st.rec[F2.par?'on':'off']={...F2.m};sv();rr()}
+const arc=(P,Q,Rr,r,c,n)=>{const a=Math.atan2(Q[1]-P[1],Q[0]-P[0]),b=Math.atan2(Rr[1]-P[1],Rr[0]-P[0]);let d=b-a;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;let h='';for(let i=0;i<n;i++){const q=r+i*6;h+=`<path d="M${P[0]+q*Math.cos(a)} ${P[1]+q*Math.sin(a)}A${q} ${q} 0 0 ${d>0?1:0} ${P[0]+q*Math.cos(b)} ${P[1]+q*Math.sin(b)}" fill="none" stroke="${c}" stroke-width="3"/>`}return h};
+let ps=0;
+const F3=Fig('f3',{show:false,layer:f=>{const{A,B,C}=f.P,D=f.D,E=f.E;let h='';if(ps>=3)h+=`<polygon points="${A} ${B} ${C}" fill="#2f6fed22"/><polygon points="${A} ${D} ${E}" fill="#19c3a644"/>`;
+if(ps==0)h+=`<line x1="${B[0]}" y1="${B[1]}" x2="${C[0]}" y2="${C[1]}" stroke="#19c3a6" stroke-width="7" opacity=".5"/>`;
+if(ps>=1)h+=arc(B,A,C,28,'#f59e0b',1)+arc(D,A,E,28,'#f59e0b',1);if(ps>=2)h+=arc(C,A,B,28,'#ec4899',2)+arc(E,A,D,28,'#ec4899',2);if(ps>=3)h+=arc(A,B,C,34,'#8b5cf6',3);return h}});
+const SX=['<b>가정</b> DE∥BC (민트색). 평행한 두 직선이 AB, AC로 잘리면 <b>동위각</b>이 생겨요.','<b>∠ABC = ∠ADE</b> (주황 호) — DE∥BC이므로 동위각의 크기가 같아요.','<b>∠ACB = ∠AED</b> (분홍 호) — 이것도 동위각이에요.','<b>∠A는 공통</b> (보라 호). 두 쌍의 대응각이 같으므로 <b>△ABC∽△ADE</b> (AA 닮음).','닮은 도형의 대응변의 비는 같으므로 <b>AB/AD = AC/AE = BC/DE</b> 가 성립해요.'];
+function pst(d){ps=cl(ps+d,0,4);F3.draw();$('stx').innerHTML=`<p>단계 ${ps+1}/5</p><p>${SX[ps]}</p>`}
+const Z=[['∠ABC와 ∠ADE는 DE∥BC이므로?',['동위각이므로 크기가 같다','동위각이므로 합이 180°이다','관계를 알 수 없다'],0,1],['두 삼각형 △ABC와 △ADE는 어떤 관계인가?',['합동','닮음 (AA)','넓이가 같다'],1,0],['따라서 대응변의 비는?',['AB/AD = AC/AE = BC/DE','AB/AD = DE/BC','AB/AD = AE/AC'],0,2]];
+$('qz').innerHTML=Z.map((z,i)=>`<p>${i+1}. ${z[0]}<br><select id="z${i}"><option value="-1">선택…</option>${z[1].map((o,k)=>`<option value="${k}">${o}</option>`).join('')}</select> <span id="zf${i}"></span></p>`).join('');
+function chk(){let n=0;Z.forEach((z,i)=>{const v=+$('z'+i).value;$('zf'+i).textContent=v<0?'':v==z[2]?'✅ 정답':'💡 '+H[z[3]];if(v==z[2])n++});if(n==3){prog(3);document.querySelector('#s3 .sol').classList.add('show')}}
+const SG={AD:['A','D',-24,0],DB:['D','B',-24,0],AE:['A','E',24,0],EC:['E','C',24,0],DE:['D','E',0,-8],BC:['B','C',0,16]};
+const sfig=(t,lab={})=>{const A=[150,18],B=[30,150],C=[270,150],D=[A[0]+(B[0]-A[0])*t,A[1]+(B[1]-A[1])*t],E=[A[0]+(C[0]-A[0])*t,A[1]+(C[1]-A[1])*t],Q={A,B,C,D,E},X=(x,y,s)=>`<text class="ln" x="${x}" y="${y}">${s}</text>`;
+return `<svg class="sf" viewBox="0 0 300 175" style="touch-action:auto"><polygon class="tri" points="${A} ${B} ${C}"/><line class="de" x1="${D[0]}" y1="${D[1]}" x2="${E[0]}" y2="${E[1]}"/>`+X(150,12,'A')+X(14,166,'B')+X(286,166,'C')+X(D[0]-16,D[1]+4,'D')+X(E[0]+16,E[1]+4,'E')+Object.entries(lab).map(([k,v])=>{const g=SG[k],p=Q[g[0]],q=Q[g[1]];return X((p[0]+q[0])/2+g[2],(p[1]+q[1])/2+g[3]+4,v)}).join('')+'</svg>'};
+const OK=['AB:AD = AC:AE','AB:AD = BC:DE','AC:AE = BC:DE','AD:AB = DE:BC','AE:AC = DE:BC','AD:AB = AE:AC'],BAD=['AD:AB = AC:AE','AB:AD = DE:BC','AE:AC = BC:DE','AB:AD = EC:AE','AD:DB = AC:AE'],KW=['평행','동위각','닮음','대응','비'];
+const TP=[['AB:AD = □ : AE','AC',['AC','EC','DE','BC']],['AB:AD = AC : □','AE',['AE','EC','DE','AD']],['BC:DE = AB : □','AD',['AD','DB','AE','AC']],['DE:BC = AD : □','AB',['AB','DB','AC','AE']],['AC:AE = □ : DE','BC',['BC','AB','AD','EC']]];
+const ti=['① 선분의 길이 구하기','② 비례식의 빈칸 채우기','③ 그림을 보고 관계 찾기','④ 잘못된 비례식 찾기','⑤ 왜 평행선에서 비가 일정할까? 내 말로 설명하기'],P=[];
+function gen(i){const p={w:0,d:0},t=[.4,.6,.75][R(0,2)];P[i]=p;
+if(i==0){const a=R(2,5),q=a+R(1,4),r=R(1,3),v=R(0,1);p.num=1;p.fig=sfig(a/q,v?{AD:a,DB:q-a,AE:a*r,EC:'?'}:{AD:a,DB:q-a,DE:a*r,BC:'?'});p.q=`DE∥BC일 때 ${v?'EC':'BC'}의 길이는? (그림은 실제 크기와 다를 수 있어요)`;p.ok=v?(q-a)*r:q*r;
+p.sol=v?`AB=AD+DB=${a}+${q-a}=${q}. △ABC∽△ADE이므로 AB:AD=AC:AE → ${q}:${a}=AC:${a*r} → AC=${q*r}. EC=AC−AE=${q*r}−${a*r}=${(q-a)*r}.`:`AB=AD+DB=${a}+${q-a}=${q}. △ABC∽△ADE이므로 AB:AD=BC:DE → ${q}:${a}=BC:${a*r} → BC=${q*r}.`}
+if(i==1){const x=TP[R(0,4)];p.fig=sfig(t);p.q=`DE∥BC일 때 □에 알맞은 것은? <b>${x[0]}</b>`;p.opts=sh(x[2]);p.ok=x[1];p.sol=`△ABC∽△ADE이므로 대응변의 비가 같아 ${x[0].replace('□',x[1])} 가 성립해요.`}
+if(i==2){const ok=sh(OK)[0];p.fig=sfig(t);p.q='DE∥BC인 그림입니다. 옳은 비례식은?';p.ok=ok;p.opts=sh([ok,...sh(BAD).slice(0,3)]);p.sol=`△ABC∽△ADE → AB/AD=AC/AE=BC/DE. 따라서 "${ok}"가 옳아요.`}
+if(i==3){const bad=sh(BAD)[0];p.fig=sfig(t);p.q='DE∥BC일 때 <b>옳지 않은</b> 비례식은?';p.ok=bad;p.opts=sh([...sh(OK).slice(0,3),bad]);p.sol=`"${bad}"는 대응변의 짝이 맞지 않아요. 옳은 관계는 AB:AD=AC:AE=BC:DE예요.`}
+if(i==4){p.txt=1;p.q="DE∥BC일 때 AB:AD = AC:AE = BC:DE가 항상 성립하는 이유를 '평행·동위각·닮음·대응·비'를 사용해 설명해 보세요.";p.sol='DE∥BC이면 동위각이 같아 ∠ABC=∠ADE, ∠ACB=∠AED이고 ∠A는 공통이에요. 따라서 △ABC∽△ADE(AA)이고, 닮은 도형은 대응변의 비가 모두 같으므로 AB/AD=AC/AE=BC/DE가 성립해요.'}
+$('c'+i).innerHTML=`<h3>${ti[i]}</h3><p>${p.q}</p>${p.fig||''}`+(p.txt?`<textarea id="in${i}" oninput="st.n.c4=this.value;sv()">${st.n.c4||''}</textarea><button onclick="ans(${i})">확인</button>`:p.num?`<input id="in${i}" type="number" step="any"> <button onclick="ans(${i})">확인</button>`:p.opts.map((o,k)=>`<button class="op" onclick="ans(${i},${k})">${o}</button>`).join(''))+`<div id="fb${i}"></div><div class="sol" id="sol${i}"><b>풀이·해설</b> ${p.sol}</div><button onclick="gen(${i})">새 문제</button>`}
+$('cc').innerHTML=[0,1,2,3,4].map(i=>`<div class="card" id="c${i}"></div>`).join('');
+function ans(i,k){const p=P[i],fb=$('fb'+i);let ok,ms='';
+if(p.txt){const v=$('in'+i).value,miss=KW.filter(w=>!v.includes(w));ok=v.length>20&&miss.length<2;ms=ok?'':'설명에 아직 들어가지 않은 핵심어: '+miss.join(', ')}
+else if(p.num){const v=parseFloat($('in'+i).value);if(isNaN(v)){fb.textContent='숫자를 입력해 주세요.';return}ok=Math.abs(v-p.ok)<1e-9}else ok=p.opts[k]==p.ok;
+if(ok){fb.textContent='✅ 정답입니다!';$('sol'+i).classList.add('show');if(!p.d){p.d=1;if(P.filter(x=>x.d).length>=3)prog(4)}}
+else{p.w++;fb.textContent='💡 힌트 '+Math.min(p.w,3)+': '+H[Math.min(p.w,3)-1]+' '+ms;if(p.w>=3)$('sol'+i).classList.add('show')}}
+function resetAll(){st={n:{},pg:{},p:{},rec:{}};sv();document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);[F0,F1,F2,F3].forEach(f=>f.reset());$('pr').innerHTML='';$('pb').textContent='평행 조건 ON';rr();ps=0;pst(0);Z.forEach((_,i)=>{$('z'+i).value=-1;$('zf'+i).textContent=''});document.querySelector('#s3 .sol').classList.remove('show');for(let i=0;i<5;i++)gen(i);upd()}
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=st.n[t.dataset.k]||'';t.oninput=()=>{st.n[t.dataset.k]=t.value;sv()}});
+['q1','q2'].forEach(n=>{const r=document.querySelector(`input[name=${n}][value="${st.p[n]}"]`);if(r)r.checked=true});
+for(let i=0;i<5;i++)gen(i);rr();pst(0);upd();go(0);
+</script></body></html>
